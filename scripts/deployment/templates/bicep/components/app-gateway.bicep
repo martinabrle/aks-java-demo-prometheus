@@ -171,6 +171,7 @@ resource appGatewayPolicy 'Microsoft.Network/ApplicationGatewayWebApplicationFir
         priority: 100
         ruleType: 'MatchRule'
         action: 'Block'
+        state: 'Disabled'
         matchConditions: [
           {
             matchVariables: [

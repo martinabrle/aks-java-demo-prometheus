@@ -729,6 +729,9 @@ module rbacKVSecretPetVisitsSvcAppInsightsInstrKey './components/role-assignment
 
 module dnsZone './components/dns-zone.bicep' = if (dnsZoneName != '') {
   name: 'child-dns-zone'
+  dependsOn: [
+    appGateway
+  ]
   params: {
     zoneName: dnsZoneName
     recordNames: [todoAppDnsRecordName, petClinicDnsRecordName, petClinicAdminDnsRecordName, petClinicGrafanaDnsRecordName, petClinicTracingServerDnsRecordName ]

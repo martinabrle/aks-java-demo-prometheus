@@ -12,5 +12,6 @@ ADD ./${ARTIFACT_NAME_ARG}-${VERSION_ARG}.jar /${ARTIFACT_NAME_ARG}-${VERSION_AR
 
 EXPOSE 80 443
 
+# This application is using embeded AI.jar library for AppInsights, so it does not need to be injected into the docker file
 # ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-javaagent:/ai.jar","-jar","/${ARTIFACT_NAME_ARG}-${VERSION_ARG}.jar"]
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/${ARTIFACT_NAME_ARG}-${VERSION_ARG}.jar"]

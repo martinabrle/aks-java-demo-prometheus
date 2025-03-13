@@ -323,6 +323,18 @@ jobs:
           tenant-id: ${{ env.AAD_TENANT_ID }}
           subscription-id: ${{ env.AKS_SUBSCRIPTION_ID }}
       
+      - name: Configure ContainerInsights V2
+        run: |
+          curl -o container-azm-ms-agentconfig.yaml https://raw.githubusercontent.com/microsoft/Docker-Provider/ci_prod/kubernetes/container-azm-ms-agentconfig.yaml
+          echo "container-azm-ms-agentconfig.yaml:"
+          echo "-----------------"
+          cat container-azm-ms-agentconfig.yaml
+          az aks command invoke \
+              --resource-group ${{env.AKS_RESOURCE_GROUP}} \
+              --name ${{env.AKS_NAME}} \
+              --command "kubectl apply -f container-azm-ms-agentconfig.yaml" \
+              --file container-azm-ms-agentconfig.yaml
+
       - name: Create federated identity for AGIC on AKS
         env:
           AGIC_IDENTITY_NAME: ${{steps.deployment.outputs.AGIC_IDENTITY_NAME}}

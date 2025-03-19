@@ -199,7 +199,19 @@ resource appGatewayPolicy 'Microsoft.Network/ApplicationGatewayWebApplicationFir
       managedRuleSets: [
         {
           ruleSetType: 'OWASP'
-           ruleSetVersion: '3.2'
+          ruleSetVersion: '3.2'
+           ruleGroupOverrides: [
+             {
+              ruleGroupName: 'REQUEST-931-APPLICATION-ATTACK-RFI'
+               rules: [
+                {
+                  ruleId: '931130'
+                  state: 'Disabled'
+                  action: 'Log'
+                 }
+               ]
+             }
+           ]
         }
       ]
     }

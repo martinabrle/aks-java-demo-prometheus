@@ -122,4 +122,4 @@ spec:
             name: tracing-server
             port:
               number: 80
-        pathType: Exact
+        pathType: Prefix

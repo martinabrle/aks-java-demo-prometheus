@@ -58,10 +58,9 @@ spec:
     http:
       paths:
       - path: /
-        pathType: Prefix
         backend:
           service:
             name: test-agic-app
             port:
               number: 80
-        pathType: Exact
+        pathType: Prefix

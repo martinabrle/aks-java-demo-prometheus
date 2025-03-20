@@ -128,4 +128,4 @@ spec:
             name: api-gateway
             port:
               number: 80
-        pathType: Exact
+        pathType: Prefix

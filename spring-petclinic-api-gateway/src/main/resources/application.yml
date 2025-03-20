@@ -27,3 +27,15 @@ spring:
             - Path=/api/customer/**
           filters:
             - StripPrefix=2
+        - id: gateway-owners-service
+          uri: http://customers-service:8080
+          predicates:
+            - Path=/api/gateway/owners/**
+          filters:
+            - StripPrefix=2
+        - id: owners-service
+          uri: http://customers-service:8080
+          predicates:
+            - Path=/api/owners/**
+          filters:
+            - StripPrefix=1

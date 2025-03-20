@@ -98,7 +98,7 @@ metadata:
   namespace: pet-clinic
 spec:
   ports:
-  - port: 8761
+  - port: 80
     protocol: TCP
     targetPort: 8761
   selector:

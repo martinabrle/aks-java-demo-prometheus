@@ -18,7 +18,7 @@
             <stringProp name="Argument.value">443</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
-          <elementProp name="PETCLINC_PROTOCOL" elementType="Argument">
+          <elementProp name="PETCLINIC_PROTOCOL" elementType="Argument">
             <stringProp name="Argument.name">PETCLINC_PROTOCOL</stringProp>
             <stringProp name="Argument.value">HTTPS</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>

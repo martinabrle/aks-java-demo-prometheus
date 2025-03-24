@@ -19,7 +19,7 @@
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
           <elementProp name="PETCLINIC_PROTOCOL" elementType="Argument">
-            <stringProp name="Argument.name">PETCLINC_PROTOCOL</stringProp>
+            <stringProp name="Argument.name">PETCLINIC_PROTOCOL</stringProp>
             <stringProp name="Argument.value">HTTPS</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>

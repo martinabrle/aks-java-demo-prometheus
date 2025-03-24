@@ -8,11 +8,12 @@
       <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
       <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
         <collectionProp name="Arguments.arguments">
-          <elementProp name="PETCLINC_HOST" elementType="Argument">
+          <!-- <elementProp name="PETCLINC_HOST" elementType="Argument">
             <stringProp name="Argument.name">PETCLINC_HOST</stringProp>
             <stringProp name="Argument.value">${PETCLINC_HOST}</stringProp>
+            PETCLINC_HOST should be set in the environment to something like pet-clinic.subdomain.domain.com
             <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
+          </elementProp> -->
           <elementProp name="PETCLINIC_PORT" elementType="Argument">
             <stringProp name="Argument.name">PETCLINIC_PORT</stringProp>
             <stringProp name="Argument.value">443</stringProp>

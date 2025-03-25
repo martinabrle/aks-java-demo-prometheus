@@ -21,7 +21,7 @@ spring:
           filters:
             - StripPrefix=2
         - id: customers-service
-          uri: http://customers-service:8080
+          uri: http://customers-service:80
           predicates:
             - Path=/api/customer/**
           filters:

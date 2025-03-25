@@ -19,7 +19,7 @@ scrape_configs:
 - job_name: customers-service
   metrics_path: /actuator/prometheus
   static_configs:
-  - targets: ['customers-service:8080']
+  - targets: ['customers-service:80']
 
 - job_name: visits-service
   metrics_path: /actuator/prometheus

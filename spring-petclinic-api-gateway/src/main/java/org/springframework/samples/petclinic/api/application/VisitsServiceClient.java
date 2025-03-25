@@ -18,13 +18,17 @@ package org.springframework.samples.petclinic.api.application;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.http.client.reactive.ReactorClientHttpConnector;
+import org.springframework.samples.petclinic.api.dto.OwnerDetails;
 import org.springframework.samples.petclinic.api.dto.Visits;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.ctc.wstx.shaded.msv_core.util.Uri;
 
+import io.netty.resolver.DefaultAddressResolverGroup;
 import reactor.core.publisher.Mono;
+import reactor.netty.http.client.HttpClient;
 
 import java.util.List;
 
@@ -40,28 +44,14 @@ public class VisitsServiceClient {
     // Could be changed for testing purpose
     private String hostname = "http://visits-service:8080/";
 
-    private final WebClient.Builder webClientBuilder;
+    private final WebClient webClient = WebClient.builder().clientConnector(new ReactorClientHttpConnector(HttpClient.create().resolver(DefaultAddressResolverGroup.INSTANCE))).build();
 
-    //TESTING pets retrieval
     public Mono<Visits> getVisitsForPets(final List<Integer> petIds) {
         
-        var joinedPetIds = joinIds(petIds);
-
-        var uri = String.format("{0}pets/visits?petId={1}", hostname, joinedPetIds);
-        System.out.flush();
-        
-        System.out.println("Starting VisitsServiceClient.getVisitsForPets("+uri+")...");
-
-        var retVal = webClientBuilder.build()
-                    .get()
-                    .uri(hostname + "pets/visits?petId={petId}", joinedPetIds)
+        return webClient.get()
+                    .uri(hostname + "pets/visits?petId={petId}", joinIds(petIds))
                     .retrieve()
                     .bodyToMono(Visits.class);
-
-        System.out.println("VisitsServiceClient.getVisitsForPets() - retVal: " + retVal);
-        System.out.flush();
-        
-        return retVal;
     }
 
     private String joinIds(List<Integer> petIds) {

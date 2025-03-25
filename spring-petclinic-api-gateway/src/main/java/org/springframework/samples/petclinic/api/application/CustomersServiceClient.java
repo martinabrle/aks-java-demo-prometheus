@@ -33,6 +33,7 @@ import reactor.netty.http.client.HttpClient;
 @RequiredArgsConstructor
 public class CustomersServiceClient {
 
+    //without this modification, the webclient will not resolve the hostname on an internal network
     private final WebClient webClient = WebClient.builder().clientConnector(new ReactorClientHttpConnector(HttpClient.create().resolver(DefaultAddressResolverGroup.INSTANCE))).build();
 
     public Mono<OwnerDetails> getOwner(final int ownerId) {

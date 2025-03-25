@@ -31,6 +31,11 @@ public class CustomersServiceClient {
     private final WebClient.Builder webClientBuilder;
 
     public Mono<OwnerDetails> getOwner(final int ownerId) {
+        String response = webClientBuilder.build().get()
+        .uri("http://customers-service:8080/owners/{ownerId}", ownerId)
+        .retrieve().toString();
+        System.out.println("Response: " + response);
+
         return webClientBuilder.build().get()
             .uri("http://customers-service:8080/owners/{ownerId}", ownerId)
             .retrieve()

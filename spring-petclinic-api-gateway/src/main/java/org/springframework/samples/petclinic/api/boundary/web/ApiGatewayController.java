@@ -50,6 +50,7 @@ public class ApiGatewayController {
     @GetMapping(value = "owners/{ownerId}")
     public Mono<OwnerDetails> getOwnerDetails(final @PathVariable int ownerId) {
         System.out.println("getOwnerDetails(" + ownerId + ")");
+        System.out.flush();
 
         return customersServiceClient.getOwner(ownerId)
             .flatMap(owner ->
@@ -63,6 +64,9 @@ public class ApiGatewayController {
     }
 
     private Function<Visits, OwnerDetails> addVisitsToOwner(OwnerDetails owner) {
+        System.out.println("addVisitsToOwner(" + owner + ")");
+        System.out.flush();
+        
         return visits -> {
             owner.getPets()
                 .forEach(pet -> pet.getVisits()

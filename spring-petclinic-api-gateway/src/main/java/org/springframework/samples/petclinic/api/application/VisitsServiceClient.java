@@ -48,6 +48,7 @@ public class VisitsServiceClient {
         var joinedPetIds = joinIds(petIds);
 
         var uri = String.format("{0}pets/visits?petId={1}", hostname, joinedPetIds);
+        System.out.flush();
         
         System.out.println("Starting VisitsServiceClient.getVisitsForPets("+uri+")...");
 
@@ -58,6 +59,7 @@ public class VisitsServiceClient {
                     .bodyToMono(Visits.class);
 
         System.out.println("VisitsServiceClient.getVisitsForPets() - retVal: " + retVal);
+        System.out.flush();
         
         return retVal;
     }

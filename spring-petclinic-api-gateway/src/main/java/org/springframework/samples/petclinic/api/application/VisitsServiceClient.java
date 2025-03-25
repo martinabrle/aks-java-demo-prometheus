@@ -34,7 +34,6 @@ import static java.util.stream.Collectors.joining;
  * @author Maciej Szarlinski
  */
 @Component
-@Slf4j
 @RequiredArgsConstructor
 public class VisitsServiceClient {
 
@@ -49,7 +48,8 @@ public class VisitsServiceClient {
         var joinedPetIds = joinIds(petIds);
 
         var uri = String.format("{0}pets/visits?petId={1}", hostname, joinedPetIds);
-        log.info("Starting VisitsServiceClient.getVisitsForPets({0})...", uri);
+        
+        System.out.println("Starting VisitsServiceClient.getVisitsForPets("+uri+")...");
 
         var retVal = webClientBuilder.build()
                     .get()
@@ -57,7 +57,8 @@ public class VisitsServiceClient {
                     .retrieve()
                     .bodyToMono(Visits.class);
 
-        log.info("VisitsServiceClient.getVisitsForPets() - retVal: {0}", retVal);
+        System.out.println("VisitsServiceClient.getVisitsForPets() - retVal: " + retVal);
+        
         return retVal;
     }
 

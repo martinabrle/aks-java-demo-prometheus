@@ -39,7 +39,6 @@ import java.util.stream.Collectors;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/gateway")
-@Slf4j
 public class ApiGatewayController {
 
     private final CustomersServiceClient customersServiceClient;
@@ -50,7 +49,8 @@ public class ApiGatewayController {
 
     @GetMapping(value = "owners/{ownerId}")
     public Mono<OwnerDetails> getOwnerDetails(final @PathVariable int ownerId) {
-        log.info("getOwnerDetails(%d)", ownerId);
+        System.out.println("getOwnerDetails(" + ownerId + ")");
+
         return customersServiceClient.getOwner(ownerId)
             .flatMap(owner ->
                 visitsServiceClient.getVisitsForPets(owner.getPetIds())
@@ -60,7 +60,6 @@ public class ApiGatewayController {
                     })
                     .map(addVisitsToOwner(owner))
             );
-
     }
 
     private Function<Visits, OwnerDetails> addVisitsToOwner(OwnerDetails owner) {

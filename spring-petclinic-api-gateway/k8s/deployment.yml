@@ -47,7 +47,8 @@ spec:
               },
               "instrumentation": {
                   "logging": {
-                  "level": "ALL"
+                      "level": "ALL"
+                  }
               },
               "preview": {
                   "captureLogbackMarker":  true,

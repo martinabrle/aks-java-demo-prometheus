@@ -32,12 +32,12 @@ public class CustomersServiceClient {
 
     public Mono<OwnerDetails> getOwner(final int ownerId) {
         String response = webClientBuilder.build().get()
-        .uri("http://customers-service:8080/owners/{ownerId}", ownerId)
+        .uri("http://customers-service.pet-clinic.svc.cluster.local:8080/owners/{ownerId}", ownerId)
         .retrieve().toString();
         System.out.println("Response: " + response);
 
         return webClientBuilder.build().get()
-            .uri("http://customers-service:8080/owners/{ownerId}", ownerId)
+            .uri("http://customers-service.pet-clinic.svc.cluster.local:8080/owners/{ownerId}", ownerId)
             .retrieve()
             .bodyToMono(OwnerDetails.class);
     }

@@ -41,9 +41,26 @@ spec:
         - name: APPLICATIONINSIGHTS_CONFIGURATION_CONTENT
           value: >-
             {
-                "role": {
-                    "name": "api-gateway"
+              "role": {
+                  "name": "api-gateway",
+                  "instance": "api-gateway"
+              },
+              "instrumentation": {
+                  "logging": {
+                  "level": "ALL"
+              },
+              "preview": {
+                  "captureLogbackMarker":  true,
+                  "captureLog4jMarker":  true,
+                  "captureLogbackCodeAttributes": true,
+                  "captureHttpServer4xxAsError": true,
+                  "springIntegration": {
+                      "enabled": true
+                  },
+                  "browserSdkLoader": {
+                      "enabled": true
                   }
+              }
             }
         - name: ENVIRONMENT
           value: AKS

@@ -16,9 +16,14 @@
 package org.springframework.samples.petclinic.api.application;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.samples.petclinic.api.dto.Visits;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
+
+import com.ctc.wstx.shaded.msv_core.util.Uri;
+
 import reactor.core.publisher.Mono;
 
 import java.util.List;
@@ -29,6 +34,7 @@ import static java.util.stream.Collectors.joining;
  * @author Maciej Szarlinski
  */
 @Component
+@Slf4j
 @RequiredArgsConstructor
 public class VisitsServiceClient {
 
@@ -37,12 +43,22 @@ public class VisitsServiceClient {
 
     private final WebClient.Builder webClientBuilder;
 
+    //TESTING pets retrieval
     public Mono<Visits> getVisitsForPets(final List<Integer> petIds) {
-        return webClientBuilder.build()
-            .get()
-            .uri(hostname + "pets/visits?petId={petId}", joinIds(petIds))
-            .retrieve()
-            .bodyToMono(Visits.class);
+        
+        var joinedPetIds = joinIds(petIds);
+
+        var uri = String.format("{0}pets/visits?petId={1}", hostname, joinedPetIds);
+        log.info("Starting VisitsServiceClient.getVisitsForPets({0})...", uri);
+
+        var retVal = webClientBuilder.build()
+                    .get()
+                    .uri(hostname + "pets/visits?petId={petId}", joinedPetIds)
+                    .retrieve()
+                    .bodyToMono(Visits.class);
+
+        log.info("VisitsServiceClient.getVisitsForPets() - retVal: {0}", retVal);
+        return retVal;
     }
 
     private String joinIds(List<Integer> petIds) {

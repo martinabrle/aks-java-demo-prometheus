@@ -118,7 +118,7 @@ spec:
     app: api-gateway
   ports:
   - protocol: TCP
-    port: 80
+    port: 8080
     targetPort: 8080
 
 ---
@@ -145,5 +145,5 @@ spec:
           service:
             name: api-gateway
             port:
-              number: 80
+              number: 8080
         pathType: Prefix

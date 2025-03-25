@@ -39,7 +39,7 @@ public class CustomersServiceClient {
     public Mono<OwnerDetails> getOwner(final int ownerId) {
         
         return webClient.get()
-                .uri("http://customers-service:8080/owners/{ownerId}", ownerId)
+                .uri("http://customers-service:8081/owners/{ownerId}", ownerId)
                 .retrieve()
                 .bodyToMono(OwnerDetails.class);
     }

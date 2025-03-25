@@ -42,7 +42,7 @@ import static java.util.stream.Collectors.joining;
 public class VisitsServiceClient {
 
     // Could be changed for testing purpose
-    private String hostname = "http://visits-service:8080/";
+    private String hostname = "http://visits-service:8082/";
 
     private final WebClient webClient = WebClient.builder().clientConnector(new ReactorClientHttpConnector(HttpClient.create().resolver(DefaultAddressResolverGroup.INSTANCE))).build();
 

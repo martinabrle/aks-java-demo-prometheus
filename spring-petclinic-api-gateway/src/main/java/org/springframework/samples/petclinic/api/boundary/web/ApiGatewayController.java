@@ -38,7 +38,7 @@ import java.util.stream.Collectors;
  */
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/gateway")
+@RequestMapping("/api") // /api/gateway
 public class ApiGatewayController {
 
     private final CustomersServiceClient customersServiceClient;
@@ -66,7 +66,7 @@ public class ApiGatewayController {
     private Function<Visits, OwnerDetails> addVisitsToOwner(OwnerDetails owner) {
         System.out.println("addVisitsToOwner(" + owner + ")");
         System.out.flush();
-        
+
         return visits -> {
             owner.getPets()
                 .forEach(pet -> pet.getVisits()

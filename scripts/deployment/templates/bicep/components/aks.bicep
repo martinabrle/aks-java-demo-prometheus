@@ -26,13 +26,13 @@ resource aksSubnet 'Microsoft.Network/virtualNetworks/subnets@2024-05-01' existi
 // }
 
 
-resource agicUserManagedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2025-01-31-preview' = {
+resource agicUserManagedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2024-11-30' = {
   name: '${name}-agic-identity'
   location: location
   tags: tagsArray
 }
 
-resource aksService 'Microsoft.ContainerService/managedClusters@2024-10-02-preview' = {
+resource aksService 'Microsoft.ContainerService/managedClusters@2024-10-01' = {
   name: name
   location: location
   tags: tagsArray

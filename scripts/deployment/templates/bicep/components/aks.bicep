@@ -133,13 +133,12 @@ resource aksService 'Microsoft.ContainerService/managedClusters@2024-10-02-previ
           logAnalyticsWorkspaceResourceID: logAnalyticsWorkspaceId
         }
       }
-      // TODO: fix
-      // azurepolicy: {
-      //   config: {
-      //     version: 'v2'
-      //   }
-      //   enabled:true
-      // }
+      azurepolicy: {
+        config: {
+          version: 'v2'
+        }
+        enabled:true
+      }
     }
     nodeResourceGroup: nodePoolRG 
   }

@@ -32,7 +32,7 @@ resource agicUserManagedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentiti
   tags: tagsArray
 }
 
-resource aksService 'Microsoft.ContainerService/managedClusters@2024-09-01' = {
+resource aksService 'Microsoft.ContainerService/managedClusters@2023-08-02-preview' = {
   name: name
   location: location
   tags: tagsArray

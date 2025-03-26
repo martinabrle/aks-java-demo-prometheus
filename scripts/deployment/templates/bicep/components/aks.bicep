@@ -95,6 +95,21 @@ resource aksService 'Microsoft.ContainerService/managedClusters@2023-08-02-previ
     oidcIssuerProfile: {
       enabled: true
     }
+    azureMonitorProfile: {
+      metrics: {
+        enabled: true
+        kubeStateMetrics: {
+          metricLabelsAllowlist: ''
+          metricAnnotationsAllowList: ''
+        }
+      }
+      logs: {
+         containerInsights: {
+           enabled: true
+           logAnalyticsWorkspaceResourceId: logAnalyticsWorkspaceId
+        }
+      }
+    }
     addonProfiles: {
       azureKeyvaultSecretsProvider: {
         enabled: true

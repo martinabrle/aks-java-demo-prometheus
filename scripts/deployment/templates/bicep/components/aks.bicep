@@ -103,10 +103,10 @@ resource aksService 'Microsoft.ContainerService/managedClusters@2024-09-01' = {
           metricAnnotationsAllowList: ''
         }
       }
-      containerInsights: {
-         enabled: true
-         logAnalyticsWorkspaceResourceId: logAnalyticsWorkspaceId
-      }
+      // containerInsights: {
+      //    enabled: true
+      //    logAnalyticsWorkspaceResourceId: logAnalyticsWorkspaceId
+      // }
     }
     addonProfiles: {
       azureKeyvaultSecretsProvider: {

@@ -8,11 +8,11 @@ param logAnalyticsWorkspaceId string
 param location string
 param tagsArray object
 
-resource vnet 'Microsoft.Network/virtualNetworks@2023-05-01' existing = {
+resource vnet 'Microsoft.Network/virtualNetworks@2024-05-01' existing = {
   name: vnetName
 }
 
-resource aksSubnet 'Microsoft.Network/virtualNetworks/subnets@2023-05-01' existing = {
+resource aksSubnet 'Microsoft.Network/virtualNetworks/subnets@2024-05-01' existing = {
   parent: vnet
   name: aksSubnetName
 }
@@ -26,13 +26,13 @@ resource aksSubnet 'Microsoft.Network/virtualNetworks/subnets@2023-05-01' existi
 // }
 
 
-resource agicUserManagedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' = {
+resource agicUserManagedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2025-01-31-preview' = {
   name: '${name}-agic-identity'
   location: location
   tags: tagsArray
 }
 
-resource aksService 'Microsoft.ContainerService/managedClusters@2023-08-02-preview' = {
+resource aksService 'Microsoft.ContainerService/managedClusters@2024-10-02-preview' = {
   name: name
   location: location
   tags: tagsArray
@@ -103,11 +103,9 @@ resource aksService 'Microsoft.ContainerService/managedClusters@2023-08-02-previ
           metricAnnotationsAllowList: ''
         }
       }
-      logs: {
-         containerInsights: {
-           enabled: true
-           logAnalyticsWorkspaceResourceId: logAnalyticsWorkspaceId
-        }
+      containerInsights: {
+         enabled: true
+         logAnalyticsWorkspaceResourceId: logAnalyticsWorkspaceId
       }
     }
     addonProfiles: {

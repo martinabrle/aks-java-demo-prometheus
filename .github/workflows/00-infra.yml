@@ -74,7 +74,13 @@ jobs:
       
     steps:
       - uses: actions/checkout@v4
-      
+
+      - name: Get the latest version of AZ CLI and Azure Bicep
+        run: |
+            az upgrade -y
+            az bicep upgrade
+
+
       - name: Azure login in AKS Subscription # https://learn.microsoft.com/en-us/azure/developer/github/connect-from-azure
         uses: azure/login@v2
         with:

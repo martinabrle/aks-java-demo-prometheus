@@ -26,13 +26,13 @@ resource aksSubnet 'Microsoft.Network/virtualNetworks/subnets@2024-05-01' existi
 // }
 
 
-resource agicUserManagedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' = {
+resource agicUserManagedIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2024-11-30' = {
   name: '${name}-agic-identity'
   location: location
   tags: tagsArray
 }
 
-resource aksService 'Microsoft.ContainerService/managedClusters@2023-08-02-preview' = {
+resource aksService 'Microsoft.ContainerService/managedClusters@2024-10-02-preview' = {
   name: name
   location: location
   tags: tagsArray
@@ -58,7 +58,6 @@ resource aksService 'Microsoft.ContainerService/managedClusters@2023-08-02-previ
         osDiskType: 'Managed'
         //osDiskType: 'Ephemeral' - does not work, temp disk too small
         #disable-next-line BCP037
-        storageProfile: 'ManagedDisks'
         type: 'VirtualMachineScaleSets'
         mode: 'System'
         maxPods: 110
@@ -103,10 +102,10 @@ resource aksService 'Microsoft.ContainerService/managedClusters@2023-08-02-previ
           metricAnnotationsAllowList: ''
         }
       }
-      // containerInsights: {
-      //    enabled: true
-      //    logAnalyticsWorkspaceResourceId: logAnalyticsWorkspaceId
-      // }
+      containerInsights: {
+         enabled: true
+         logAnalyticsWorkspaceResourceId: logAnalyticsWorkspaceId
+      }
     }
     addonProfiles: {
       azureKeyvaultSecretsProvider: {

@@ -88,7 +88,7 @@ class ApiGatewayControllerTest {
             .thenReturn(Mono.error(new ConnectException("Simulate error")));
 
         client.get()
-            .uri("/api/gatewayowners/1")
+            .uri("/api/gateway/owners/1")
             .exchange()
             .expectStatus().isOk()
             .expectBody()
